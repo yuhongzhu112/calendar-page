@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<style>
+			html, body {
+				margin: 0;
+				height: 100%;
+				font-family: sans-serif;
+			}
+
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#container {
+				position: absolute;
+				top: 5px;
+				left: 5px;
+				right: 5px;
+				bottom: 5px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				background-color: #FEFEEF;
+				border: 2px solid rgb(50, 50, 50);
+				
+			}
+			
+			/* ...... */
+			header {			
+				font-size: 10vh; /* font-size： 字体大小 */
+				font-weight: bold;
+			}
+			
+			/* 年月 */
+			#ym {
+				font-size: 10vh;
+				color: #2000ff;
+			}
+			
+			/* 日期 */
+			#d {
+				font-size: 20vh;
+				font-weight: bold;
+				color: #ff0000;
+			}
+			
+			/* 星期 */
+			#w {
+				font-size: 10vh;
+				color: #2000ff;
+			}
+			
+			/* 时间 */
+			#time {
+				font-size: 15vh;
+				color: #100080;
+				
+			}
+			
+			.text {
+				padding-top: 3vh;	/* 行间距 */
+				
+			}
+		</style>
+	</head>
+
+	<body>
+			<div id="container">
+				<header>XX区公安局</header>
+				<div id="ym" class="text"></div>
+				<div id="d" class="text"></div>
+				<div id="w" class="text"></div>
+				<div id="time" class="text"></div>
+			</div>
+	</body>
+		
+	<script>
+		function startTime() {
+			let today = new Date();
+			let y = today.getFullYear();
+			let mon = today.getMonth();
+			let d = today.getDate();
+			let h = today.getHours();
+			let m = today.getMinutes();
+			let s = today.getSeconds();
+			let w = today.getDay();
+			m = format(m);
+			s = format(s);
+			
+			document.querySelector('#ym').textContent = y + '年' + (mon+1) + '月';
+			document.querySelector('#d').textContent = d;
+			document.querySelector('#w').textContent = dayOfToday(w);
+			document.querySelector('#time').textContent = h + ":" + m + ":" + s;
+			let t = setTimeout(startTime, 500);
+		}
+		
+		function format(i) {
+		  if (i < 10) {i = "0" + i};
+		  return i;
+		}
+		
+		function dayOfToday(w) {
+			switch (w) {
+				case 0:
+					return "星期日";
+					break;
+				case 1:
+					return "星期一";
+					break;
+				case 2:
+					return "星期二";
+					break;
+				case 3:
+					return "星期三";
+					break;
+				case 4:
+					return "星期四";
+					break;
+				case 5:
+					return "星期五";
+					break;
+				case 6:
+					return "星期六";
+					break;
+			}
+		}
+		
+		startTime();
+	</script>
+</html>
